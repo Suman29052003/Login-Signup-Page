@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import userIcon from "../Icons/userIcon.svg";
 import emailIcon from "../Icons/emailIcon.svg";
 import passwordIcon from "../Icons/passwordIcon.svg";
 
 const Login = () => {
+  const [action, setAction] = useState("Sign Up");
   return (
     <div className="main">
       <div className="container">
         <div className="header">
-          SignUp
+          {action}
           <div className="underline"></div>
         </div>
         <div className="inputs">
-          <div className="input name">
+        {action === "Log In" ? (
+          <div></div>
+        ) : (
+            <div className="input name">
             <img src={userIcon} alt="" />
             <input type="text" placeholder="Name" />
           </div>
+        )}
           <div className="input mail">
             <img src={emailIcon} alt="" />
             <input type="email" placeholder="Email" />
@@ -26,12 +31,20 @@ const Login = () => {
             <input type="password" placeholder="Password" />
           </div>
         </div>
-        <div className="forgotPassword">
-          Forgot Password? <span>Click Me!</span>
-        </div>
+        {action === "Sign Up" ? (
+          <div></div>
+        ) : (
+          <div className="forgotPassword">
+            Forgot Password? <span>Click Me!</span>
+          </div>
+        )}
         <div className="buttons">
-          <div className="signup button">Sign Up</div>
-          <div className="logIn button">Log In</div>
+          <div className="signup button" onClick={() => setAction("Sign Up")}>
+            Sign Up
+          </div>
+          <div className="logIn button" onClick={() => setAction("Log In")}>
+            Log In
+          </div>
         </div>
       </div>
     </div>
